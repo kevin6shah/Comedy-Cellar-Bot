@@ -13,8 +13,7 @@ DATE_FORMAT = '%m/%d/%Y'
 
 def dateCheck(s):
     try:
-        date = datetime.datetime.strptime(s, DATE_FORMAT)
-        return date
+        return datetime.datetime.strptime(s, DATE_FORMAT)
     except:
         raise argparse.ArgumentTypeError('Input date is not a valid date')
 
@@ -78,4 +77,7 @@ parser.add_argument("-t", "--time", help="Time for the reservation. NOTE: Time s
 
 args = parser.parse_args()
 
-startBot()
+if (args.date.date() >= datetime.datetime.today().date()):
+    startBot()
+else:
+    print('Error: The date given has passed')
