@@ -5,7 +5,6 @@ import webbot
 import datetime
 from datetime import date
 from selenium.webdriver.common.by import By
-from localStoragePy import localStoragePy
 
 load_dotenv(find_dotenv())
 
@@ -29,11 +28,11 @@ def timeCheck(s):
 
 
 def reserveShow(web):
-    web.type('George', xpath='//*[@id="panel-4"]/div[2]/form/div[1]/input')
-    web.type('Patrick', xpath='//*[@id="panel-4"]/div[2]/form/div[2]/input')
+    web.type('Kevin', xpath='//*[@id="panel-4"]/div[2]/form/div[1]/input')
+    web.type('Shah', xpath='//*[@id="panel-4"]/div[2]/form/div[2]/input')
     web.driver.find_element(
         by=By.XPATH, value='//*[@id="panel-4"]/div[2]/form/div[3]/select/option[5]').click()
-    web.type('5059338493',
+    web.type('6099377787',
              xpath='//*[@id="panel-4"]/div[2]/form/div[4]/input[1]')
     web.click(xpath='//*[@id="panel-4"]/div[3]/input[2]')
     web.click('Make Reservation')
@@ -42,7 +41,6 @@ def reserveShow(web):
         pass
 
     print('RESERVED SHOW!!')
-    localStorage.setItem(args.email, 'RESERVED')
     web.quit()
 
 
@@ -80,9 +78,4 @@ parser.add_argument("-t", "--time", help="Time for the reservation. NOTE: Time s
 
 args = parser.parse_args()
 
-localStorage = localStoragePy('cellar')
-
-if (localStorage.getItem(args.email) == None):
-    startBot()
-else:
-    print('Already Reserved!')
+startBot()
